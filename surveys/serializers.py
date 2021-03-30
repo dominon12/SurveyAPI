@@ -33,11 +33,10 @@ class QuestionSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-        service.create_question(validated_data)
-        return question
+        return service.create_question(validated_data)
 
     def update(self, instance, validated_data):
-        return update_question(instance, validated_data)
+        return service.update_question(instance, validated_data)
 
 
 class SurveyQuestionSerializer(serializers.ModelSerializer):
@@ -67,14 +66,6 @@ class SurveySerializer(serializers.ModelSerializer):
             'end_date',
             'questions'
         ]
-
-    def validate_start_date(self, value):
-        """Make sure that 'start_date' 
-        field won't be overwritten.
-        """
-        if self.instance and self.instance.start_date != value:
-            raise ValidationError("Editing of the filed 'start_date' after creating of instance is prohibited.")
-        return value
 
     def create(self, validated_data):
         questions = validated_data.pop('questions')

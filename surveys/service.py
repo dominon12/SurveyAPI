@@ -1,3 +1,5 @@
+from rest_framework import serializers
+
 from .models import Question, AnswerChoice, CompletedSurvey, Answer
 
 
@@ -135,6 +137,7 @@ def create_completed_survey(validated_data):
 
         if question.question_type == 1: # Text answer
             answer.text_answer = answer_data.get('text_answer')
+            answer.save()
 
         elif question.question_type == 2: # One choice answer
             answer.answer_choices.add(answer_choices[0])
