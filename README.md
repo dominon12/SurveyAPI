@@ -30,7 +30,22 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-6. Создайте миграции и мигрируйте базу данных
+6. Создайте файл ".env" с переменными окружения в папке SurveyAPI, в которой находится файл settings.py
+   - Если у вас не установлен консольный редактор VIM, воспользуйтесь любым удобным для вас редактором
+
+```bash
+vim SurveyAPI/.env
+```
+
+7. Добавьте в него переменную окружения SECRET_KEY
+   - Чтобы начать редактировать файл, нажмите "i"
+   - Чтобы выйти и сохранить файл, нажмите "ESC", затем ":wq", затем "Enter"
+
+```bash
+SECRET_KEY=q!g#@1q&05%pcu%)6!63zn8$0=y(6u+$umf@%5_@364cfn-_6s
+```
+
+8. Создайте миграции и мигрируйте базу данных
 
 ```bash
 python manage.py makemigrations
@@ -38,13 +53,13 @@ python manage.py migrate
 python manage.py migrate --run-syncdb
 ```
 
-7. Создайте суперпользователя
+9. Создайте суперпользователя
 
 ```bash
 python manage.py createsuperuser
 ```
 
-8. Запустите локальный сервер
+10. Запустите локальный сервер
 
 ```bash
 python manage.py runserver
